@@ -12,33 +12,33 @@
             <ListView x:Name="HarmonogramListView" SeparatorVisibility="None" HasUnevenRows="True">
                 <!-- Nagłówki tabeli -->
                 <ListView.Header>
-                    <Grid Padding="10" ColumnDefinitions="*, *, *, *, *">
-                        <Label Text="Numer" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                        <Label Text="Kwota" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
-                        <Label Text="Kapitał" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
-                        <Label Text="Odsetki" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3"/>
-                        <Label Text="Saldo" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4"/>
-                    </Grid>
+                    <StackLayout Orientation="Horizontal" Padding="10">
+                        <Label Text="Numer" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Kwota" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Kapitał" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Odsetki" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
+                        <Label Text="Saldo" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
+                    </StackLayout>
                 </ListView.Header>
 
                 <!-- Definicja komórek tabeli -->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="20" ColumnDefinitions="*, *, *, *, *">
-                                <Label Text="{Binding NumerRaty}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
-                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
-                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
-                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3"/>
-                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4"/>
-                            </Grid>
+                            <StackLayout Orientation="Horizontal" Padding="20">
+                                <Label Text="{Binding NumerRaty}" FontSize="18" HorizontalOptions="CenterAndExpand" />
+                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
+                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
+                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
+                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
             <!-- Przycisk "Wróć" -->
-            <Button Text="Wróć do ustawień" BackgroundColor="{StaticResource Primary}" TextColor="White" MaximumWidthRequest="420" FontAttributes="Bold" FontSize="16" Clicked="OnWrocClicked"/>
+            <Button Text="Wróć do ustawień" BackgroundColor="{StaticResource Primary}" MaximumWidthRequest="420" FontAttributes="Bold" FontSize="16" Clicked="OnWrocClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
