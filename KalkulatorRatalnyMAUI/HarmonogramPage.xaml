@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="KalkulatorRatalnyMAUI.HarmonogramPage">
+
+    <ScrollView HorizontalOptions="Center" VerticalOptions="Center" MaximumWidthRequest="820">
+        <VerticalStackLayout Padding="30" Spacing="30" HorizontalOptions="Fill" VerticalOptions="Fill">
+            <!-- Tytuł harmonogramu -->
+            <Label Text="Harmonogram spłat" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="32" HorizontalTextAlignment="Center" />
+
+            <!-- Lista z harmonogramem -->
+            <ListView x:Name="HarmonogramListView" SeparatorVisibility="None" HasUnevenRows="True">
+                <!-- Nagłówki tabeli -->
+                <ListView.Header>
+                    <Grid Padding="10" ColumnDefinitions="*, *, *, *, *">
+                        <Label Text="Numer" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
+                        <Label Text="Kwota" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
+                        <Label Text="Kapitał" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
+                        <Label Text="Odsetki" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3"/>
+                        <Label Text="Saldo" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4"/>
+                    </Grid>
+                </ListView.Header>
+
+                <!-- Definicja komórek tabeli -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="20" ColumnDefinitions="*, *, *, *, *">
+                                <Label Text="{Binding NumerRaty}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0"/>
+                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1"/>
+                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2"/>
+                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="3"/>
+                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="4"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Przycisk "Wróć" -->
+            <Button Text="Wróć do ustawień" BackgroundColor="{StaticResource Primary}" TextColor="White" MaximumWidthRequest="420" FontAttributes="Bold" FontSize="16" Clicked="OnWrocClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
