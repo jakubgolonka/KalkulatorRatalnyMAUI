@@ -1,44 +1,85 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KalkulatorRatalnyMAUI.HarmonogramPage">
 
-    <ScrollView HorizontalOptions="Center" VerticalOptions="Center" MaximumWidthRequest="820">
-        <VerticalStackLayout Padding="30" Spacing="30" HorizontalOptions="Fill" VerticalOptions="Fill">
-            <!-- Tytuł harmonogramu -->
-            <Label Text="Harmonogram spłat" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="32" HorizontalTextAlignment="Center" />
+    <ScrollView MaximumWidthRequest="820">
+        <VerticalStackLayout Padding="20, 40" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <!-- Tekst z tytułem aplikacji -->
+            <Label Text="Kalkulator Ratalny"
+               TextColor="{StaticResource Primary}"
+               HorizontalTextAlignment="Center"
+               LineBreakMode="WordWrap"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+            
+            <!-- Linia rozdzielająca -->
+            <BoxView HeightRequest="1"
+                     Color="DarkGray" />
 
-            <!-- Lista z harmonogramem -->
-            <ListView x:Name="HarmonogramListView" SeparatorVisibility="None" HasUnevenRows="True">
+            <Button Text="Wróć do ustawień"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalOptions="Fill"
+                Clicked="OnWrocClicked"/>
+
+            <!-- Linia rozdzielająca -->
+            <BoxView HeightRequest="1"
+                     Color="DarkGray" />
+
+            <!-- Sekcja: Tabela rat -->
+            <Label Text="Harmonogram rat kredytu"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkGray"
+                   FontAttributes="None"
+                   FontSize="Small"/>
+
+            <!-- Lista harmonogramu -->
+            <ListView x:Name="HarmonogramListView"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      BackgroundColor="Transparent">
+
                 <!-- Nagłówki tabeli -->
                 <ListView.Header>
-                    <StackLayout Orientation="Horizontal" Padding="10">
-                        <Label Text="Numer" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Kwota" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Kapitał" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Odsetki" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
-                        <Label Text="Saldo" FontAttributes="Bold" FontSize="20" HorizontalOptions="CenterAndExpand" />
+                    <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                        <Label Text="Numer" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Kwota" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Kapitał" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Odsetki" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Saldo" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                 </ListView.Header>
 
-                <!-- Definicja komórek tabeli -->
+                <!-- Komórki -->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="20">
-                                <Label Text="{Binding NumerRaty}" FontSize="18" HorizontalOptions="CenterAndExpand" />
-                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
-                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
-                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
-                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" FontSize="18" HorizontalOptions="CenterAndExpand" />
+                            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
+                                <Label Text="{Binding NumerRaty}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!-- Przycisk "Wróć" -->
-            <Button Text="Wróć do ustawień" BackgroundColor="{StaticResource Primary}" MaximumWidthRequest="420" FontAttributes="Bold" FontSize="16" Clicked="OnWrocClicked"/>
+            <!-- Linia -->
+            <BoxView HeightRequest="1"
+                     Color="DarkGray" />
+
+            <Button Text="Wróć do ustawień"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalOptions="Fill"
+                Clicked="OnWrocClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
