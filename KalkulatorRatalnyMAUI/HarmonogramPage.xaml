@@ -4,7 +4,11 @@
              x:Class="KalkulatorRatalnyMAUI.HarmonogramPage">
 
     <ScrollView MaximumWidthRequest="820">
-        <VerticalStackLayout Padding="20, 40" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <VerticalStackLayout Padding="20, 40" 
+                             Spacing="20" 
+                             HorizontalOptions="CenterAndExpand" 
+                             VerticalOptions="CenterAndExpand">
+
             <!-- Tekst z tytułem aplikacji -->
             <Label Text="Kalkulator Ratalny"
                    TextColor="{StaticResource Primary}"
