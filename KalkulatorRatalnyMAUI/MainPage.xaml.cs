@@ -26,7 +26,7 @@ namespace KalkulatorRatalnyMAUI
             // Pobranie i walidacja danych z wartością kwoty kredytu
             if (!decimal.TryParse(kwotaKredytuInput.Text, out decimal kwotaKredytu) || kwotaKredytu <= 0 || kwotaKredytu > 10000000)
             {
-                await DisplayAlert("Błąd", "Wprowadź poprawną kwotę kredytu (od 1 do 10 000 000)!", "Rozumiem");
+                await DisplayAlert("Ostrzeżenie", "Wprowadź poprawną kwotę kredytu (od 1 do 10 000 000)!", "Rozumiem");
 
                 return;
             }
@@ -34,7 +34,7 @@ namespace KalkulatorRatalnyMAUI
             // Pobranie i walidacja danych z wartością liczbą miesięcy kredytu
             if (!int.TryParse(liczbaMiesiecyInput.Text, out int liczbaMiesiecy) || liczbaMiesiecy <= 0 || liczbaMiesiecy > 420)
             {
-                await DisplayAlert("Błąd", "Wprowadź poprawną liczbę miesięcy (maksymalnie 420 miesięcy)!", "Rozumiem");
+                await DisplayAlert("Ostrzeżenie", "Wprowadź poprawną liczbę miesięcy (maksymalnie 420 miesięcy)!", "Rozumiem");
 
                 return;
             }
@@ -42,7 +42,7 @@ namespace KalkulatorRatalnyMAUI
             // Pobranie i walidacja danych z wartością oprocentowania kredytu
             if (!decimal.TryParse(oprocentowanieKredytuInput.Text, out decimal oprocentowanie) || oprocentowanie < 0 || oprocentowanie > 50)
             {
-                await DisplayAlert("Błąd", "Wprowadź poprawne oprocentowanie (od 0 do 50%)!", "Rozumiem");
+                await DisplayAlert("Ostrzeżenie", "Wprowadź poprawne oprocentowanie (od 0 do 50%)!", "Rozumiem");
 
                 return;
             }
@@ -54,7 +54,7 @@ namespace KalkulatorRatalnyMAUI
             {
                 if (!decimal.TryParse(nadplataKredytuInput.Text, out nadplata) || nadplata < 0)
                 {
-                    await DisplayAlert("Błąd", "Wprowadź poprawną wartość nadpłaty!", "Rozumiem");
+                    await DisplayAlert("Ostrzeżenie", "Wprowadź poprawną wartość nadpłaty!", "Rozumiem");
 
                     return;
                 }
@@ -67,18 +67,18 @@ namespace KalkulatorRatalnyMAUI
             await Navigation.PushAsync(new HarmonogramPage(harmonogram));
         }
 
-        // Metoda / Funkcja do obliczania harmonogramu spłat kredytu
+        // Metoda do obliczania harmonogramu spłat kredytu
         private List<HarmonogramItem> ObliczHarmonogram(decimal kwota, int miesiace, decimal oprocentowanie, decimal nadplata)
         {
             // Obsługa błędów: Sprawdzamy, czy kwota i oprocentowanie są prawidłowe
             if (kwota <= 0 || kwota > 10000000)
             {
-                throw new ArgumentException("Kwota pożyczki musi być większa niż 0 i mniejsza lub równa 10 000 000.");
+                throw new ArgumentException("Kwota pożyczki musi być z zakresu od 0 do 10 milionów.");
             }
 
             if (miesiace <= 0 || miesiace > 420)
             {
-                throw new ArgumentException("Liczba miesięcy musi być większa niż 0 i mniejsza lub równa 420.");
+                throw new ArgumentException("Liczba miesięcy musi być z zakresu od 0 do 420.");
             }
 
             if (oprocentowanie < 0 || oprocentowanie > 50)
