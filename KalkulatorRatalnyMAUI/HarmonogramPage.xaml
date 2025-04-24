@@ -7,29 +7,30 @@
         <VerticalStackLayout Padding="20, 40" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <!-- Tekst z tytułem aplikacji -->
             <Label Text="Kalkulator Ratalny"
-               TextColor="{StaticResource Primary}"
-               HorizontalTextAlignment="Center"
-               LineBreakMode="WordWrap"
-               FontAttributes="Bold"
-               FontSize="Large"/>
+                   TextColor="{StaticResource Primary}"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"
+                   FontAttributes="Bold"
+                   FontSize="Large"/>
             
             <!-- Linia rozdzielająca -->
             <BoxView HeightRequest="1"
                      Color="DarkGray" />
 
+            <!-- Przycisk z powrotem do ustawień -->
             <Button Text="Wróć do ustawień"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="White"
-                FontAttributes="Bold"
-                FontSize="Small"
-                HorizontalOptions="Fill"
-                Clicked="OnWrocClicked"/>
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    HorizontalOptions="Fill"
+                    Clicked="OnWrocClicked"/>
 
             <!-- Linia rozdzielająca -->
             <BoxView HeightRequest="1"
                      Color="DarkGray" />
 
-            <!-- Sekcja: Tabela rat -->
+            <!-- Sekcja z harmonogramem rat -->
             <Label Text="Harmonogram rat kredytu"
                    HorizontalTextAlignment="Center"
                    TextColor="DarkGray"
@@ -44,42 +45,67 @@
 
                 <!-- Nagłówki tabeli -->
                 <ListView.Header>
-                    <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-                        <Label Text="Numer" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Kwota" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Kapitał" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Odsetki" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Saldo" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="10" 
+                                 Spacing="10">
+                        <Label Text="Numer" 
+                               FontSize="Small" 
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Kwota" 
+                               FontSize="Small" 
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Kapitał"
+                               FontSize="Small" 
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Odsetki" 
+                               FontSize="Small" 
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="Saldo" 
+                               FontSize="Small" 
+                               HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                 </ListView.Header>
 
-                <!-- Komórki -->
+                <!-- Komórki tabeli -->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="10" Spacing="10">
-                                <Label Text="{Binding NumerRaty}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" FontSize="Small" HorizontalOptions="CenterAndExpand"/>
+                            <StackLayout Orientation="Horizontal" 
+                                         Padding="10" 
+                                         Spacing="10">
+                                <Label Text="{Binding NumerRaty}" 
+                                       FontSize="Small" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" 
+                                       FontSize="Small" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" 
+                                       FontSize="Small" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" 
+                                       FontSize="Small" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" 
+                                       FontSize="Small"
+                                       HorizontalOptions="CenterAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!-- Linia -->
+            <!-- Linia rozdzielająca -->
             <BoxView HeightRequest="1"
                      Color="DarkGray" />
-
+            
+            <!-- Przycisk z powrotem do ustawień -->
             <Button Text="Wróć do ustawień"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="White"
-                FontAttributes="Bold"
-                FontSize="Small"
-                HorizontalOptions="Fill"
-                Clicked="OnWrocClicked"/>
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    HorizontalOptions="Fill"
+                    Clicked="OnWrocClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
