@@ -1,119 +1,138 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KalkulatorRatalnyMAUI.MainPage">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="KalkulatorRatalnyMAUI.MainPage">
 
-    <ScrollView MaximumWidthRequest="820">
-        <VerticalStackLayout Padding="20, 40" 
-                             Spacing="20" 
-                             HorizontalOptions="CenterAndExpand" 
-                             VerticalOptions="CenterAndExpand">
-            
-            <!-- Tekst z tytułem aplikacji -->
-            <Label Text="Kalkulator Ratalny"
-                   TextColor="{StaticResource Primary}"
-                   HorizontalTextAlignment="Center"
-                   LineBreakMode="WordWrap"
-                   FontAttributes="Bold"
-                   FontSize="Large"/>
+    <!-- Główny kontener z 3 rzędami: nagłówek, formularz, przycisk -->
+    <Grid 
+        Padding="40,40" 
+        RowSpacing="20" 
+        RowDefinitions="Auto,*,Auto">
 
-            <!-- Linia rozdzielająca elementy -->
-            <BoxView HeightRequest="1"
-                     Color="DarkGray"/>
+        <!-- Nagłówek strony -->
+        <Grid 
+            Grid.Row="0"
+            Padding="0,0,0,10"
+            MaximumWidthRequest="620">
 
-            <!-- Tekst z nazwą sekcji -->
-            <Label Text="Podstawowe dane kredytu"
-                   HorizontalTextAlignment="Center"
-                   LineBreakMode="WordWrap"
-                   TextColor="DarkGray"
-                   FontAttributes="None"
-                   FontSize="Small"/>
+            <Label 
+                Text="Kalkulator Ratalny"
+                TextColor="{StaticResource Primary}"
+                HorizontalTextAlignment="Center"
+                FontAttributes="Bold"
+                FontSize="Large"/>
+        </Grid>
 
-            <!-- Kwota kredytu -->
-            <Label Text="Kwota kredytu" 
-                   FontSize="Medium"/>
-            
-            <Entry x:Name="kwotaKredytuInput"
-                   Placeholder="Wprowadź kwotę kredytu..."
-                   Keyboard="Numeric"
-                   FontSize="Small"
-                   HorizontalOptions="Fill"
-                   HorizontalTextAlignment="Center"/>
+        <!-- ScrollView na formularz z polami wejściowymi -->
+        <ScrollView 
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            MaximumWidthRequest="620">
 
-            <!-- Liczba miesięcy -->
-            <Label Text="Liczba miesięcy"
-                   FontSize="Medium"/>
-            
-            <Entry x:Name="liczbaMiesiecyInput"
-                   Placeholder="Wprowadź liczbę miesięcy..."
-                   Keyboard="Numeric"
-                   FontSize="Small"
-                   HorizontalOptions="Fill"
-                   HorizontalTextAlignment="Center"/>
+            <VerticalStackLayout Spacing="20">
 
-            <!-- Oprocentowanie kredytu -->
-            <Label Text="Oprocentowanie roczne" 
-                   FontSize="Medium"/>
-            
-            <Entry x:Name="oprocentowanieKredytuInput"
-                   Placeholder="Wprowadź oprocentowanie..."
-                   Keyboard="Numeric"
-                   FontSize="Small"
-                   HorizontalOptions="Fill"
-                   HorizontalTextAlignment="Center"/>
+                <!-- Sekcja podstawowych danych -->
+                <Label 
+                    Text="Podstawowe ustawienia"
+                    HorizontalTextAlignment="Center"
+                    TextColor="DarkGray"
+                    FontSize="Small"/>
 
-            <!-- Linia rozdzielająca elementy -->
-            <BoxView HeightRequest="1"
-                     Color="DarkGray"/>
+                <!-- Etykieta pola kwoty kredytu -->
+                <Label 
+                    Text="Kwota kredytu" 
+                    FontSize="Medium"/>
 
-            <!-- Tekst z nazwą sekcji -->
-            <Label Text="Dodatkowe opcje"
-                   HorizontalTextAlignment="Center"
-                   LineBreakMode="WordWrap"
-                   TextColor="DarkGray"
-                   FontAttributes="None"
-                   FontSize="Small"/>
-
-            <!-- Opcja nadpłaty kredytu -->
-            <HorizontalStackLayout Spacing="10">
-                <Label Text="Czy chcesz wprowadzić nadpłatę?"
-                       FontSize="Medium"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Start" />
-                
-                <Switch x:Name="czyNadplataKredytuSwitch"
-                        OnColor="{StaticResource PrimaryDark}"
-                        Toggled="OnNadplataToggled"
-                        VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-
-            <!-- Nadpłata kredytu (ukryta domyślnie) -->
-            <Label x:Name="nadplataKredytuLabel"
-                   Text="Nadpłata kredytu"
-                   FontSize="Medium"
-                   IsVisible="False"/>
-            
-            <Entry x:Name="nadplataKredytuInput"
-                   Placeholder="Wprowadź nadpłatę kredytu..."
-                   Keyboard="Numeric"
-                   FontSize="Small"
-                   HorizontalTextAlignment="Center"
-                   HorizontalOptions="Fill"
-                   IsVisible="False"/>
-
-            <!-- Linia rozdzielająca elementy -->
-            <BoxView HeightRequest="1"
-                     Color="DarkGray"/>
-
-            
-            <!-- Przycisk do obliczania rat -->
-            <Button Text="Oblicz raty kredytu"
-                    BackgroundColor="{StaticResource Primary}"
-                    TextColor="White"
-                    FontAttributes="Bold"
+                <!-- Pole tekstowe na kwotę kredytu -->
+                <Entry 
+                    x:Name="kwotaKredytuInput"
+                    Placeholder="Wprowadź kwotę kredytu..."
+                    Keyboard="Numeric"
                     FontSize="Small"
                     HorizontalOptions="Fill"
-                    Clicked="OnObliczRatyClicked"/>
-        </VerticalStackLayout>
-    </ScrollView>
+                    HorizontalTextAlignment="Center"/>
+
+                <!-- Etykieta pola liczby miesięcy -->
+                <Label 
+                    Text="Liczba miesięcy" 
+                    FontSize="Medium"/>
+
+                <!-- Pole tekstowe na liczbę miesięcy -->
+                <Entry 
+                    x:Name="liczbaMiesiecyInput"
+                    Placeholder="Wprowadź liczbę miesięcy..."
+                    Keyboard="Numeric"
+                    FontSize="Small"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"/>
+
+                <!-- Etykieta pola oprocentowania -->
+                <Label 
+                    Text="Oprocentowanie roczne" 
+                    FontSize="Medium"/>
+
+                <!-- Pole tekstowe na oprocentowanie -->
+                <Entry 
+                    x:Name="oprocentowanieKredytuInput"
+                    Placeholder="Wprowadź oprocentowanie roczne..."
+                    Keyboard="Numeric"
+                    FontSize="Small"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"/>
+
+                <!-- Sekcja dodatkowych opcji -->
+                <Label 
+                    Text="Dodatkowe opcje"
+                    HorizontalTextAlignment="Center"
+                    TextColor="DarkGray"
+                    FontSize="Small"/>
+
+                <!-- Przełącznik z etykietą dla nadpłaty jednorazowej -->
+                <HorizontalStackLayout 
+                    Spacing="10" 
+                    VerticalOptions="Center">
+                    
+                    <Label 
+                        Text="Nadpłata jednorazowa"
+                        FontSize="Medium"
+                        VerticalOptions="Center" />
+
+                    <Switch 
+                        x:Name="czyNadplataKredytuSwitch"
+                        OnColor="{StaticResource PrimaryDark}"
+                        Toggled="OnNadplataToggled"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <!-- Pole na wartość nadpłaty (ukryte domyślnie) -->
+                <Entry 
+                    x:Name="nadplataKredytuInput"
+                    Placeholder="Wprowadź nadpłatę kredytu..."
+                    Keyboard="Numeric"
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Fill"
+                    IsVisible="False"/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Kontener na przycisk -->
+        <Grid 
+            Grid.Row="2"
+            Padding="0,10,0,0"
+            MaximumWidthRequest="620">
+
+            <!-- Przycisk do wyliczenia harmonogramu -->
+            <Button 
+                Text="Oblicz spłaty kredytu"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalOptions="Fill"
+                Clicked="OnObliczRatyClicked" />
+        </Grid>
+    </Grid>
 </ContentPage>

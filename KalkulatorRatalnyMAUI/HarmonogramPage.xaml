@@ -1,115 +1,182 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="KalkulatorRatalnyMAUI.HarmonogramPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:KalkulatorRatalnyMAUI"
+    x:Class="KalkulatorRatalnyMAUI.HarmonogramPage"
+    x:DataType="local:HarmonogramItem">
 
-    <ScrollView MaximumWidthRequest="820">
-        <VerticalStackLayout Padding="20, 40" 
-                             Spacing="20" 
-                             HorizontalOptions="CenterAndExpand" 
-                             VerticalOptions="CenterAndExpand">
+    <!-- Główny kontener strony -->
+    <Grid 
+        Padding="40,40" 
+        RowSpacing="20" 
+        RowDefinitions="Auto,*,Auto"
+        HorizontalOptions="Center">
 
-            <!-- Tekst z tytułem aplikacji -->
-            <Label Text="Kalkulator Ratalny"
-                   TextColor="{StaticResource Primary}"
-                   HorizontalTextAlignment="Center"
-                   LineBreakMode="WordWrap"
-                   FontAttributes="Bold"
-                   FontSize="Large"/>
-            
-            <!-- Linia rozdzielająca -->
-            <BoxView HeightRequest="1"
-                     Color="DarkGray" />
+        <!-- Nagłówek strony -->
+        <Grid 
+            Grid.Row="0" 
+            Padding="0,0,0,10" 
+            MaximumWidthRequest="620">
 
-            <!-- Przycisk z powrotem do ustawień -->
-            <Button Text="Wróć do ustawień"
-                    BackgroundColor="{StaticResource Primary}"
-                    TextColor="White"
-                    FontAttributes="Bold"
+            <Label 
+                Text="Kalkulator Ratalny"
+                TextColor="{StaticResource Primary}"
+                HorizontalTextAlignment="Center"
+                FontAttributes="Bold"
+                FontSize="Large" />
+        </Grid>
+
+        <!-- Sekcja z nagłówkami kolumn i listą harmonogramu -->
+        <Grid 
+            Grid.Row="1" 
+            MaximumWidthRequest="1020" 
+            HorizontalOptions="Fill" 
+            RowDefinitions="Auto,*" 
+            ColumnDefinitions="*">
+
+            <!-- Nagłówek tabeli z nazwami kolumn -->
+            <Grid 
+                Padding="5" 
+                ColumnSpacing="5" 
+                ColumnDefinitions="*,*,*,*,*">
+
+                <!-- Kolumna: numer raty -->
+                <Label 
+                    Text="Numer"
                     FontSize="Small"
-                    HorizontalOptions="Fill"
-                    Clicked="OnWrocClicked"/>
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Grid.Column="0" />
 
-            <!-- Linia rozdzielająca -->
-            <BoxView HeightRequest="1"
-                     Color="DarkGray" />
+                <!-- Kolumna: całkowita kwota raty -->
+                <Label 
+                    Text="Kwota raty"
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Grid.Column="1" />
 
-            <!-- Sekcja z harmonogramem rat -->
-            <Label Text="Harmonogram rat kredytu"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkGray"
-                   FontAttributes="None"
-                   FontSize="Small"/>
+                <!-- Kolumna: część kapitałowa raty -->
+                <Label 
+                    Text="Kapitał"
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Grid.Column="2" />
 
-            <!-- Lista harmonogramu -->
-            <ListView x:Name="HarmonogramListView"
-                      SeparatorVisibility="None"
-                      HasUnevenRows="True"
-                      BackgroundColor="Transparent">
+                <!-- Kolumna: część odsetkowa raty -->
+                <Label 
+                    Text="Odsetki"
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Grid.Column="3" />
 
-                <!-- Nagłówki tabeli -->
-                <ListView.Header>
-                    <StackLayout Orientation="Horizontal"
-                                 Padding="10" 
-                                 Spacing="10">
-                        <Label Text="Numer" 
-                               FontSize="Small" 
-                               HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Kwota" 
-                               FontSize="Small" 
-                               HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Kapitał"
-                               FontSize="Small" 
-                               HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Odsetki" 
-                               FontSize="Small" 
-                               HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Saldo" 
-                               FontSize="Small" 
-                               HorizontalOptions="CenterAndExpand"/>
-                    </StackLayout>
-                </ListView.Header>
+                <!-- Kolumna: pozostałe saldo do spłaty -->
+                <Label 
+                    Text="Pozostałe saldo"
+                    FontSize="Small"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    Grid.Column="4" />
+            </Grid>
 
-                <!-- Komórki tabeli -->
+            <!-- Lista harmonogramu: wyświetla szczegóły spłat w tabeli -->
+            <ListView 
+                x:Name="HarmonogramListView"
+                Grid.Row="1"
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                BackgroundColor="Transparent"
+                VerticalOptions="Fill">
+
+                <!-- Szablon pojedynczego wiersza harmonogramu -->
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate 
+                        x:DataType="local:HarmonogramItem">
+
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" 
-                                         Padding="10" 
-                                         Spacing="10">
-                                <Label Text="{Binding NumerRaty}" 
-                                       FontSize="Small" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding KwotaRaty, StringFormat='{0:C}'}" 
-                                       FontSize="Small" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding Kapital, StringFormat='{0:C}'}" 
-                                       FontSize="Small" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding Odsetki, StringFormat='{0:C}'}" 
-                                       FontSize="Small" 
-                                       HorizontalOptions="CenterAndExpand"/>
-                                <Label Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}" 
-                                       FontSize="Small"
-                                       HorizontalOptions="CenterAndExpand"/>
-                            </StackLayout>
+                            <Grid 
+                                Padding="10" 
+                                ColumnSpacing="10" 
+                                ColumnDefinitions="*,*,*,*,*">
+
+                                <!-- Numer raty -->
+                                <Label 
+                                    Text="{Binding NumerRaty}"
+                                    FontSize="Small"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="0" />
+
+                                <!-- Kwota raty (waluta) -->
+                                <Label 
+                                    Text="{Binding KwotaRaty, StringFormat='{0:C}'}"
+                                    FontSize="Small"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="1" />
+
+                                <!-- Kapitał raty (waluta) -->
+                                <Label 
+                                    Text="{Binding Kapital, StringFormat='{0:C}'}"
+                                    FontSize="Small"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="2" />
+
+                                <!-- Odsetki raty (waluta) -->
+                                <Label 
+                                    Text="{Binding Odsetki, StringFormat='{0:C}'}"
+                                    FontSize="Small"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="3" />
+
+                                <!-- Pozostałe saldo (waluta) -->
+                                <Label 
+                                    Text="{Binding PozostaleSaldo, StringFormat='{0:C}'}"
+                                    FontSize="Small"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="4" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
 
-            <!-- Linia rozdzielająca -->
-            <BoxView HeightRequest="1"
-                     Color="DarkGray" />
-            
-            <!-- Przycisk z powrotem do ustawień -->
-            <Button Text="Wróć do ustawień"
-                    BackgroundColor="{StaticResource Primary}"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    FontSize="Small"
-                    HorizontalOptions="Fill"
-                    Clicked="OnWrocClicked"/>
-        </VerticalStackLayout>
-    </ScrollView>
+        <!-- Stopka z przyciskami akcji obok siebie -->
+        <Grid 
+            Grid.Row="2" 
+            Padding="0,10,0,0" 
+            MaximumWidthRequest="620" 
+            ColumnDefinitions="*,*"
+            ColumnSpacing="10">
+
+            <!-- Przycisk eksportu harmonogramu do PDF -->
+            <Button 
+                Text="Eksportuj do PDF"
+                BackgroundColor="{StaticResource PrimaryDark}"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalOptions="Fill"
+                Grid.Column="0"
+                Clicked="OnSavePdfClicked"/>
+
+            <!-- Przycisk powrotu do ekranu ustawień -->
+            <Button 
+                Text="Wróć do ustawień"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalOptions="Fill"
+                Grid.Column="1"
+                Clicked="OnWrocClicked"/>
+        </Grid>
+    </Grid>
 </ContentPage>
