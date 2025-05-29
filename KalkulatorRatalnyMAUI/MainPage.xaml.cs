@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices;
 
 namespace KalkulatorRatalnyMAUI
 {
@@ -17,7 +18,6 @@ namespace KalkulatorRatalnyMAUI
         private void OnNadplataToggled(object sender, ToggledEventArgs e)
         {
             bool isToggled = e.Value;
-
             nadplataKredytuInput.IsVisible = isToggled;
         }
 
@@ -25,6 +25,15 @@ namespace KalkulatorRatalnyMAUI
         // Zawiera walidację wszystkich pól wejściowych, obsługę błędów i wywołanie funkcji obliczającej harmonogram rat.
         private async void OnObliczRatyClicked(object sender, EventArgs e)
         {
+            // Ustalenie wymaganego separatora dziesiętnego na podstawie platformy (Windows – przecinek, Android – kropka)
+            char requiredSeparator = DeviceInfo.Platform == DevicePlatform.Android ? '.' : ',';
+
+            // Funkcja sprawdzająca poprawność separatora dziesiętnego w polu tekstowym
+            bool IsDecimalSeparatorCorrect(string input)
+            {
+                return requiredSeparator == '.' ? !input.Contains(',') : !input.Contains('.');
+            }
+
             // Walidacja pola "Kwota kredytu"
             if (string.IsNullOrWhiteSpace(kwotaKredytuInput.Text))
             {
@@ -32,10 +41,10 @@ namespace KalkulatorRatalnyMAUI
                 return;
             }
 
-            if (kwotaKredytuInput.Text.Contains('.'))
+            if (!IsDecimalSeparatorCorrect(kwotaKredytuInput.Text))
             {
-                // Informacja o poprawnym formacie dziesiętnym (używamy przecinka zamiast kropki)
-                await DisplayAlert("Uwaga", "W polu \"Kwota kredytu\" użyj przecinka ',' jako separatora dziesiętnego zamiast kropki '.'", "Rozumiem");
+                string separatorInfo = requiredSeparator == ',' ? "przecinka ','" : "kropki '.'";
+                await DisplayAlert("Uwaga", $"W polu \"Kwota kredytu\" użyj {separatorInfo} jako separatora dziesiętnego.", "Rozumiem");
                 return;
             }
 
@@ -64,9 +73,9 @@ namespace KalkulatorRatalnyMAUI
                 return;
             }
 
-            if (liczbaMiesiecyInput.Text.Contains('.'))
+            if (liczbaMiesiecyInput.Text.Contains('.') || liczbaMiesiecyInput.Text.Contains(','))
             {
-                await DisplayAlert("Uwaga", "W polu \"Liczba miesięcy\" nie używaj kropki '.'", "Rozumiem");
+                await DisplayAlert("Uwaga", "W polu \"Liczba miesięcy\" nie używaj separatorów dziesiętnych.", "Rozumiem");
                 return;
             }
 
@@ -95,9 +104,10 @@ namespace KalkulatorRatalnyMAUI
                 return;
             }
 
-            if (oprocentowanieKredytuInput.Text.Contains('.'))
+            if (!IsDecimalSeparatorCorrect(oprocentowanieKredytuInput.Text))
             {
-                await DisplayAlert("Uwaga", "W polu \"Oprocentowanie\" użyj przecinka ',' jako separatora dziesiętnego zamiast kropki '.'", "Rozumiem");
+                string separatorInfo = requiredSeparator == ',' ? "przecinka ','" : "kropki '.'";
+                await DisplayAlert("Uwaga", $"W polu \"Oprocentowanie\" użyj {separatorInfo} jako separatora dziesiętnego.", "Rozumiem");
                 return;
             }
 
@@ -130,9 +140,10 @@ namespace KalkulatorRatalnyMAUI
                     return;
                 }
 
-                if (nadplataKredytuInput.Text.Contains('.'))
+                if (!IsDecimalSeparatorCorrect(nadplataKredytuInput.Text))
                 {
-                    await DisplayAlert("Uwaga", "W polu \"Nadpłata\" użyj przecinka ',' jako separatora dziesiętnego zamiast kropki '.'", "Rozumiem");
+                    string separatorInfo = requiredSeparator == ',' ? "przecinka ','" : "kropki '.'";
+                    await DisplayAlert("Uwaga", $"W polu \"Nadpłata\" użyj {separatorInfo} jako separatora dziesiętnego.", "Rozumiem");
                     return;
                 }
 

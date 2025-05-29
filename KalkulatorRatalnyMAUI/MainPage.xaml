@@ -6,7 +6,7 @@
 
     <!-- Główny kontener z 3 rzędami: nagłówek, formularz, przycisk -->
     <Grid 
-        Padding="40,40" 
+        Padding="20,40" 
         RowSpacing="20" 
         RowDefinitions="Auto,*,Auto">
 

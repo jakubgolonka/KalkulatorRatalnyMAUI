@@ -78,7 +78,7 @@ namespace KalkulatorRatalnyMAUI
                         }
 
                         int width = 1220;
-                        int height = 980;
+                        int height = 780;
 
                         appWindow.Resize(new SizeInt32(width, height));
 
