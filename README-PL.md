@@ -14,7 +14,7 @@ Aplikacja mobilna stworzona w technologii **.NET MAUI**, pozwalająca na szybkie
 - [Przykład użycia](#przykład-użycia)  
 - [Eksport harmonogramu do PDF](#eksport-harmonogramu-do-pdf)  
 - [Rozwój i dalsze kroki](#rozwój-i-dalsze-kroki)  
-- [Licencja](#licencja)  
+- [Autorzy proejktu](#autorzy-projektu)  
 
 ---
 
