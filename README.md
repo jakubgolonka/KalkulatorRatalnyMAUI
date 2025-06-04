@@ -1,4 +1,4 @@
-# MAUI Loan Calculator
+# Installment Calculator MAUI
 
 A mobile application built with **.NET MAUI**, allowing quick and accurate calculation of loan installments and generating a detailed repayment schedule with PDF export capability (Windows only).
 
@@ -20,7 +20,7 @@ A mobile application built with **.NET MAUI**, allowing quick and accurate calcu
 
 ## Project Description
 
-**MAUI Loan Calculator** is a tool dedicated to individuals who want to accurately calculate a loan repayment schedule. The application allows:
+**Installment Calculator MAUI** is a tool dedicated to individuals who want to accurately calculate a loan repayment schedule. The application allows:
 
 * Calculation of loan installments divided into principal and interest components.
 * Visualization of the repayment schedule in a clear table.
