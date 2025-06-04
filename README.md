@@ -82,8 +82,9 @@ Aplikacja mobilna stworzona w technologii **.NET MAUI**, pozwalająca na szybkie
 
 1. Sklonuj repozytorium:
    ```bash
-   git clone https://github.com/twoje-repo/kalkulator-ratalny-maui.git
-   cd kalkulator-ratalny-maui
+   git clone https://github.com/jakubgolonka/KalkulatorRatalnyMAUI.git
+   cd KalkulatorRatalnyMAUI
+   
 2. Otwórz projekt w Visual Studio.
 3. Wybierz platformę docelową (Android, iOS, Windows) z górnego paska.
 4. Uruchom projekt naciskając F5 lub klikając Run.
