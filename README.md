@@ -87,3 +87,48 @@ Aplikacja mobilna stworzona w technologii **.NET MAUI**, pozwalająca na szybkie
 2. Otwórz projekt w Visual Studio.
 3. Wybierz platformę docelową (Android, iOS, Windows) z górnego paska.
 4. Uruchom projekt naciskając F5 lub klikając Run.
+
+---
+
+## Przykład użycia
+
+Po uruchomieniu aplikacji:
+
+1. Wprowadź dane kredytu: kwotę, oprocentowanie i czas trwania.
+2. Naciśnij **"Oblicz raty"**.
+3. Przejdź do zakładki z harmonogramem spłat.
+4. Sprawdź szczegóły każdej raty w tabeli.
+5. Jeśli jesteś na Windows, kliknij **„Eksportuj do PDF”**, aby zapisać raport w folderze **Dokumenty**.
+
+---
+
+## Eksport harmonogramu do PDF
+
+Funkcjonalność generowania PDF korzysta z biblioteki **PdfSharpCore** i działa aktualnie tylko na systemie **Windows**.
+
+PDF zawiera:
+
+- Tytuł i datę wygenerowania  
+- Tabelę z kolumnami: numer raty, kwota, kapitał, odsetki, saldo  
+- Automatyczne dzielenie na strony  
+- Estetyczne nagłówki i formatowanie walut
+
+**Ścieżka zapisu:** folder `Dokumenty` użytkownika, plik nazwany:  
+`Harmonogram_yyyyMMdd_HHmmss.pdf`
+
+---
+
+## Rozwój i dalsze kroki
+
+- Eksport PDF na Android i iOS  
+- Historia kalkulacji i lokalna baza danych  
+- Dodanie wykresów spłaty kapitału i odsetek  
+
+---
+
+## Autorzy projektu
+
+- Jakub Golonka
+- Jakub Matras
+- Krystian Frączek
+- Łukasz Szewczyk
